@@ -40,7 +40,6 @@
 </div>
 
 <!-- PRODUCTOS-->
-
 <div class="container border p-4 shadow-lg p-3 mb-5 bg-body rounded">
     <h2 class="text-center ">PRODUCTOS</h2>
     <table class="container table table table-hover">
@@ -79,13 +78,15 @@
     <body>
     <div id="messages" class="p-2 m-2"></div>
     <form onsubmit="return enviarMensaje()">
-        <input class="m-2 p-1 form-control" placeholder="Username" type="text" id="author"/>
-        <input class="m-2 p-1 form-control" placeholder="Textarea"  type="text" id="text"/>
-
-
+        <input class="m-2 p-1 form-control" placeholder="author" type="text" id="author"/>
+        <input class="m-2 p-1 form-control" placeholder="id" type="text" id="id"/>
+        <input class="m-2 p-1 form-control" placeholder="nombre"  type="text" id="nombre"/>
+        <input class="m-2 p-1 form-control" placeholder="apellido"  type="text" id="apellido"/>
+        <input class="m-2 p-1 form-control" placeholder="edad" type="text" id="edad"/>
+        <input class="m-2 p-1 form-control" placeholder="alias" type="text" id="alias"/>
+        <input class="m-2 p-1 form-control" placeholder="avatar" type="text" id="avatar"/>
+        <input class="m-2 p-1 form-control" placeholder="text" type="text" id="text"/>
 <!--        <input class="m-2 p-1" type="text" id="text"/>-->
-
-
 
 <!--        type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"-->
         <button class="m-2 p-1 form-control btn btn-dark" type="submit">Enviar mensaje</button>

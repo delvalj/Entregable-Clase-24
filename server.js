@@ -11,18 +11,21 @@ const socketServer = new SocketServer(httpServer);
 const Knex = require('knex').default;
 
 
-const knexsqlite = require('./config/options.js');
+// // const knexsqlite = require('./config/options.js');
 
 
-// Conexion con SQLite
-const knexSQLite = Knex({
-    client: 'sqlite3',
-    connection: { filename: './DB/ecommerce.sqlite' },
-    useNullAsDefault: true
-})
+// // // Conexion con SQLite
+// // const knexSQLite = Knex({
+// //     client: 'sqlite3',
+// //     connection: { filename: './DB/ecommerce.sqlite' },
+// //     useNullAsDefault: true
+// // })
 
-const ContenedorChat = require('./clases/contenedorChat.js');
-const contenedor = new ContenedorChat('mensajes', knexSQLite);
+// const ContenedorChat = require('./clases/contenedorChat.js');
+// const contenedor = new ContenedorChat('mensajes', knexSQLite);
+
+const contenedorChat = require('./clases/contenedorChatFirebase.js');
+const contenedor = new contenedorChat('mensajes')
 
 const messages = [];
 
@@ -54,7 +57,7 @@ app.set("view engine", "hbs");
 
 socketServer.on('connection', async (socket) => {
     socket.emit('messages', await contenedor.readMessage());
-    socket.on('new_message',async (mensaje) => {
+    socket.on('new_message', async (mensaje) => {
         console.log(mensaje);
         await contenedor.saveMessage(mensaje);
         let mensajes = await contenedor.readMessage();
