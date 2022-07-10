@@ -24,8 +24,8 @@ const Knex = require('knex').default;
 // const ContenedorChat = require('./clases/contenedorChat.js');
 // const contenedor = new ContenedorChat('mensajes', knexSQLite);
 
-const contenedorChat = require('./clases/contenedorChatFirebase.js');
-const contenedor = new contenedorChat('mensajes')
+const contenedorChat = require('./daos/chatDaoFirebase');
+const contenedor = new contenedorChat();
 
 const messages = [];
 
