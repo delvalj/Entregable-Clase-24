@@ -26,8 +26,8 @@ const crearEtiquetasMensaje = (mensaje) => {
       <em class="text-danger ">${id}</em>
       <em class="text-primary ">${edad}</em>
       <em class="text-info ">${alias}</em>
-      <em class="text-danger ">${text}</em>
       <em class="text-primary ">${avatar}</em>
+      <em class="text-danger ">[ ${text} ]</em>
     </div>
   `;
 }

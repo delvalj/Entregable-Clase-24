@@ -41,18 +41,28 @@ class chatDaoFirebase extends ContenedorFirebase {
    /**
     * Metodo para obtener todos los mensajes y renderizarlo por pantalla
     */
+  //  async readMessage() {
+  //    const query = db.collection(this.nombreCollection);
+  //    const resultados = (await query.get()).docs;
+  //    if (!resultados) {
+  //      console.log("No users");
+  //      return ('No users :(');
+  //    } else {
+  //      const result = resultados.map((resultado) => resultado.data());
+  //      return result;
+  //    }
+  //  }
    async readMessage() {
-     const query = db.collection(this.nombreCollection);
-     const resultados = (await query.get()).docs;
-     if (!resultados) {
-       console.log("No users");
-       return ('No users :(');
-     } else {
-       const result = resultados.map((resultado) => resultado.data());
-       return result;
-     }
-   }
-
+    const query = db.collection(this.nombreCollection);
+    const resultados = (await query.get()).docs;
+    if (!resultados) {
+      console.log("No users");
+      return ('No users :(');
+    } else {
+      const result = resultados.map((resultado) => resultado.data());
+      return result;
+    }
+  }
 }
 
 module.exports = chatDaoFirebase;

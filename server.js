@@ -10,21 +10,8 @@ const httpServer = new HttpServer(app);
 const socketServer = new SocketServer(httpServer);
 const Knex = require('knex').default;
 
-
-// // const knexsqlite = require('./config/options.js');
-
-
-// // // Conexion con SQLite
-// // const knexSQLite = Knex({
-// //     client: 'sqlite3',
-// //     connection: { filename: './DB/ecommerce.sqlite' },
-// //     useNullAsDefault: true
-// // })
-
-// const ContenedorChat = require('./clases/contenedorChat.js');
-// const contenedor = new ContenedorChat('mensajes', knexSQLite);
-
-const contenedorChat = require('./daos/chatDaoFirebase');
+// const contenedorChat = require('./daos/chatDaoFirebase');
+const contenedorChat = require('./daos/chatDaoMongo');
 const contenedor = new contenedorChat();
 
 const messages = [];
@@ -54,13 +41,12 @@ app.set("views", "./hbs_views");
 app.set("view engine", "hbs");
 
 // CH A T
-
 socketServer.on('connection', async (socket) => {
-    socket.emit('messages', await contenedor.readMessage());
+    socket.emit('messages', await contenedor.getAll());
     socket.on('new_message', async (mensaje) => {
         console.log(mensaje);
-        await contenedor.saveMessage(mensaje);
-        let mensajes = await contenedor.readMessage();
+        await contenedor.metodoSave(mensaje);
+        let mensajes = await contenedor.getAll();
         socketServer.sockets.emit('messages', mensajes);
     });
 
