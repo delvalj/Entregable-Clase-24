@@ -40,6 +40,16 @@ app.engine(
 app.set("views", "./hbs_views");
 app.set("view engine", "hbs");
 
+// Router 
+app.get('/login',async (req,res) => {
+    res.render('login')
+});
+
+app.get('/formulario',async (req,res) => {
+    res.render('formulario')
+});
+
+
 // CH A T
 socketServer.on('connection', async (socket) => {
     socket.emit('messages', await contenedor.getAll());
