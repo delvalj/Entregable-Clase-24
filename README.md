@@ -1,44 +1,29 @@
-# Desafio Entregable Coderhouse 
-# Node.js & SQL
+# Desafio Entregable Coderhouse clase 24
+# PERSISTIR DATOS DE SESSION EN MONGO ATLAS
+# LOG-IN POR FORMULARIO
 
-Tomando como base las clases Contenedor en memoria y en archivos, desarrollar un nuevo contenedor con idénticos métodos pero que funcione sobre bases de datos, utilizando Knex para la conexión.
-Esta clase debe recibir en su constructor el objeto de configuración de Knex y el nombre de la tabla sobre la cual trabajará. Luego, modificar el desafío entregable de la clase 11”Chat con Websocket”, y:
-cambiar la persistencia de los mensajes de filesystem a base de datos SQLite3.
-cambiar la persistencia de los productos de memoria a base de datos MariaDB.
+Incorporaremos un mecanismo sencillo que permite loguear un cliente por su nombre mediante un formulario de ingreso.
 
-Desarrollar también un script que utilizando knex cree las tablas necesarias para la persistencia en cuestión (tabla mensajes en sqlite3 y tabla productos en mariaDb).
+# Consigna: 
 
-Notas:
-Definir una carpeta DB para almacenar la base datos SQLite3 llamada ecommerce
+Continuando con el desafío de la clase anterior, vamos a incorporar un mecanismo sencillo que permite loguear un cliente por su nombre, mediante un formulario de ingreso.
+Luego de que el usuario esté logueado, se mostrará sobre el contenido del sitio un cartel con el mensaje “Bienvenido” y el nombre de usuario. Este cartel tendrá un botón de deslogueo a su derecha.
+Verificar que el cliente permanezca logueado en los reinicios de la página, mientras no expire el tiempo de inactividad de un minuto, que se recargará con cada request. En caso de alcanzarse ese tiempo, el próximo request de usuario nos llevará al formulario de login.
+Al desloguearse, se mostrará una vista con el mensaje de 'Hasta luego' más el nombre y se retornará automáticamente, luego de dos segundos, a la vista de login de usuario.
 
 
 # Getting Started
 ## Clonar el proyecto:
-git clone 
+* git clone 
+
 ## Start 
 Primero instalar todas las dependencias necesarias.
 * npm install 
   
-Luego para poner en marcha el proyecto.
-* npm run start 
+Luego para poner en marcha el proyecto en la terminal corremos
+* node server.js
 
 
-* Para inicializar la tabla "Articulos" hay que ejecutar el archivo mysql.js
-
-
-* Para inicializar la tabla "Mensajes" hay que ejecutar el archivo sqlite3.js
-
-## Dependencias
-* "express"
-* "express-handlebars"
-* "handlebars"
-* "knex"
-* "moment"
-* "multer"
-* "mysql2"
-* "socket.io"
-* "sqlite3"
-* "bootstrap"
 
 
 
