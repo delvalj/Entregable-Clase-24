@@ -10,7 +10,6 @@ const enviarMensaje = () => {
     const text = document.getElementById("text").value;
     const avatar = document.getElementById("avatar").value;
     
-
     const mensaje = { author, nombre, apellido, id, edad,alias, text, avatar  };
     socket.emit('new_message', mensaje);
     return false;

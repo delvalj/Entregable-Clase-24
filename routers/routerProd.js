@@ -10,11 +10,11 @@ const PORT = process.env.PORT || 8080;
 let prodContainer = require('../clases/contenedorProducto')
 const {optionsMySQL} = require('../config/options.js')
 
-routerProducto.get("/", async (req, res, next) => {
-    const productos = new prodContainer(optionsMySQL, 'articulos');
-    const showProductos = await productos.getAll();
-    res.render("main", {showProductos});
-});
+// routerProducto.get("/", async (req, res, next) => {
+//     const productos = new prodContainer(optionsMySQL, 'articulos');
+//     const showProductos = await productos.getAll();
+//     res.render("main", {showProductos});
+// });
 
 const armarMock = () => {
     return {
@@ -29,7 +29,6 @@ const armarMock = () => {
 routerProducto.get("/productos-test", (req, res) => {
     let {cant = 5} = req.query ;
     const mocks = [];
-
     for(let i = 0; i < cant; i++) {
         mocks.push(armarMock());
     }

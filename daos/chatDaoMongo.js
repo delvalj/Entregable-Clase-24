@@ -45,6 +45,7 @@ class ProductosDaoMongo extends contenedorChatMongo {
     console.log(resultado);
     return resultado;
   }
+
 }
 
 module.exports = ProductosDaoMongo;
