@@ -9,13 +9,15 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <title>Desafio Entregable clase 16</title>
+    <title>Login por Formulario - Desafio Clase 24</title>
   </head>
   <body>
-    <div
-      class="container text-center mt-2 border shadow-lg p-3 mb-5 bg-body rounded"
-    >
-      <h1 class="m-3"> Bienvenido/a {{ this.user }}</h1>
+    <div class="container text-center mt-2 border shadow-lg p-3 mb-5 bg-body rounded">
+
+      {{!-- <div class="row"> --}}
+        <h1 class="m-3 my-4"> Bienvenido/a {{ this.user }}</h1> 
+        <a href="/logout" class="btn btn-warning my-4">Log Out</a>  
+      {{!-- </div> --}}
       <h2 class="m-3">Entregable Login Sessions</h1>
       
       <form action="/api" method="post">
@@ -165,6 +167,9 @@
         <button class="m-2 p-1 form-control btn btn-dark" type="submit">Enviar
           mensaje</button>
       </form>
+
+
+      
     </body>
   </div>
 </html>
