@@ -14,6 +14,7 @@ const Knex = require("knex").default;
 const session = require("express-session");
 const cp = require("cookie-parser");
 const MongoStore = require("connect-mongo");
+const {faker} = require("@faker-js/faker");
 
 const loginCheck = require("./middlewares/loginCheck");
 app.use(cp());
@@ -91,11 +92,36 @@ let prodContainer = require('./clases/contenedorProducto')
 const {optionsMySQL} = require('./config/options.js');
 const { debug } = require("console");
 
+const armarMock = () => {
+  return {
+      nombres: faker.name.firstName(),
+      apellidos: faker.name.lastName(),
+      colores:  faker.color.human()
+  }
+}
+
 app.get("/", loginCheck, async (req, res) => {
-  const productos = new prodContainer(optionsMySQL, 'articulos');
-  const showProductos = await productos.getAll();
-  res.render("main", { user: req.session.name , showProductos });
+  let {cant = 5} = req.query ;
+  const mocks = [];
+
+  for(let i = 0; i < cant; i++) {
+      mocks.push(armarMock());
+  }
+  // const productos = new prodContainer(optionsMySQL, 'articulos');
+  // const showProductos = await productos.getAll();
+
+  res.render("main", { user: req.session.name , showProductos: mocks });
 });
+
+// app.get("/", (req, res) => {
+//   let {cant = 5} = req.query ;
+//   const mocks = [];
+//   for(let i = 0; i < cant; i++) {
+//       mocks.push(armarMock());
+//   }
+//   res.render('main', {products: mocks})
+//   // res.send(mocks);
+// });
 
 app.get("/logout", loginCheck, ( req, res) => {
   const user = req.session.name
@@ -104,6 +130,8 @@ app.get("/logout", loginCheck, ( req, res) => {
       res.render("logout" , {user: user})
   });
 })
+
+
 
 // CH A T
 socketServer.on("connection", async (socket) => {

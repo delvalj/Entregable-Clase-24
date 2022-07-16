@@ -15,11 +15,10 @@
     <div class="container text-center mt-2 border shadow-lg p-3 mb-5 bg-body rounded">
 
       {{!-- <div class="row"> --}}
-        <h1 class="m-3 my-4"> Bienvenido/a {{ this.user }}</h1> 
-        <a href="/logout" class="btn btn-warning my-4">Log Out</a>  
+        <h1 class="my-3"> Bienvenido/a {{ this.user }}</h1> 
+        <a href="/logout" class="btn btn-warning my-1">Log Out</a>  
       {{!-- </div> --}}
-      <h2 class="m-3">Entregable Login Sessions</h1>
-      
+      <h4 class="m-3">Entregable Login Sessions</h1>
       <form action="/api" method="post">
         <!-- title input -->
         <div class="form-outline mb-4">
@@ -73,7 +72,8 @@
     </div>
 
     <!-- PRODUCTOS-->
-    <div class="container border p-4 shadow-lg p-3 mb-5 bg-body rounded">
+    {{!-- WITH MYSQL - KNEX --}}
+    {{!-- <div class="container border p-4 shadow-lg p-3 mb-5 bg-body rounded">
       <h2 class="text-center">PRODUCTOS</h2>
       <table class="container table table table-hover">
         <thead>
@@ -91,6 +91,28 @@
               <td><a href="{{thumbnail}}">{{thumbnail}}</a></td>
               <td>{{code}}</td>
               <td>${{price}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div> --}}
+
+    {{!-- RANDOM GENERATED DATA WITH FAKERS --}}
+
+        <div class="container border p-4 shadow-lg p-3 mb-5 bg-body rounded">
+      <h2 class="text-center">PRODUCTOS</h2>
+      <table class="container table table table-hover">
+        <thead>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Colores</th>
+        </thead>
+        <tbody>
+          {{#each showProductos}}
+            <tr>
+              <td>{{nombres}}</td>
+              <td>{{apellidos}}</td>
+              <td>{{colores}}</td>
             </tr>
           {{/each}}
         </tbody>
