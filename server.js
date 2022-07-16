@@ -80,18 +80,21 @@ app.get("/login", (req, res) => {
 });
 
 app.post("/login",async (req, res) => {
-  req.session.name = 'JoaquinHardcode';
+  console.log(req.session)
+  req.session.name = req.body.nemo;
+  
+  // req.session.name = 'JoaquinHardcode';
   res.redirect("/")
 });
 
 let prodContainer = require('./clases/contenedorProducto')
-const {optionsMySQL} = require('./config/options.js')
+const {optionsMySQL} = require('./config/options.js');
+const { debug } = require("console");
 
 app.get("/", loginCheck, async (req, res) => {
-  req.session.name = 'JoaquinHardCode';
   const productos = new prodContainer(optionsMySQL, 'articulos');
   const showProductos = await productos.getAll();
-  res.render("main", { showProductos, user: req.session.name, });
+  res.render("main", { user: req.session.name , showProductos });
 });
 
 app.get("/logout", loginCheck, ( req, res) => {
@@ -106,7 +109,7 @@ app.get("/logout", loginCheck, ( req, res) => {
 socketServer.on("connection", async (socket) => {
   socket.emit("messages", await contenedor.getAll());
   socket.on("new_message", async (mensaje) => {
-    console.log(mensaje);
+    // console.log(mensaje);
     await contenedor.metodoSave(mensaje);
     let mensajes = await contenedor.getAll();
     socketServer.sockets.emit("messages", mensajes);
