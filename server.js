@@ -16,14 +16,15 @@ const cp = require("cookie-parser");
 const MongoStore = require("connect-mongo");
 const {faker} = require("@faker-js/faker");
 
-const loginCheck = require("./middlewares/loginCheck");
-app.use(cp());
 
+// Inicializadores
 // const contenedorChat = require('./daos/chatDaoFirebase');
 const contenedorChat = require("./daos/chatDaoMongo");
 const contenedor = new contenedorChat();
 
-const messages = [];
+// Middlewares
+const loginCheck = require("./middlewares/loginCheck");
+app.use(cp());
 
 // Middleware para parsear el Body. Sin esto no obtenemos el Body. SIEMPRE QUE USAMOS POST HAY QUE USARLO.
 // El body llega como strings. Lo que hace el middleware es transformarlo en JSON y mandarlo a la funcion que debe controlarlo.
@@ -73,8 +74,6 @@ app.set("view engine", "hbs");
 app.get("/login", (req, res) => {
     if (req.session.name) {
     res.redirect("/api");
-    console.log(req.session.name)
-    console.log(req.session)
   } else {
     res.render("login", {});
   }
@@ -83,14 +82,8 @@ app.get("/login", (req, res) => {
 app.post("/login",async (req, res) => {
   console.log(req.session)
   req.session.name = req.body.nemo;
-  
-  // req.session.name = 'JoaquinHardcode';
   res.redirect("/")
 });
-
-let prodContainer = require('./clases/contenedorProducto')
-const {optionsMySQL} = require('./config/options.js');
-const { debug } = require("console");
 
 const armarMock = () => {
   return {
@@ -107,21 +100,9 @@ app.get("/", loginCheck, async (req, res) => {
   for(let i = 0; i < cant; i++) {
       mocks.push(armarMock());
   }
-  // const productos = new prodContainer(optionsMySQL, 'articulos');
-  // const showProductos = await productos.getAll();
 
   res.render("main", { user: req.session.name , showProductos: mocks });
 });
-
-// app.get("/", (req, res) => {
-//   let {cant = 5} = req.query ;
-//   const mocks = [];
-//   for(let i = 0; i < cant; i++) {
-//       mocks.push(armarMock());
-//   }
-//   res.render('main', {products: mocks})
-//   // res.send(mocks);
-// });
 
 app.get("/logout", loginCheck, ( req, res) => {
   const user = req.session.name
@@ -131,13 +112,10 @@ app.get("/logout", loginCheck, ( req, res) => {
   });
 })
 
-
-
 // CH A T
 socketServer.on("connection", async (socket) => {
   socket.emit("messages", await contenedor.getAll());
   socket.on("new_message", async (mensaje) => {
-    // console.log(mensaje);
     await contenedor.metodoSave(mensaje);
     let mensajes = await contenedor.getAll();
     socketServer.sockets.emit("messages", mensajes);

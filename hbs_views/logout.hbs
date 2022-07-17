@@ -1,9 +1,11 @@
-<div class="m-3 container">
-  <h1 >Hasta luego {{this.user}}</h1>
+<div class="my-4 container text-center border shadow">
+  <h1 class="text-center my-2"> Hasta luego {{this.user}}</h1>
+  <p class="my-2">Vuelva Prontos!</p>
+  <p class="fs-6 my-4">Redirigiendo...</p>
 </div>
 
 <script>
   setTimeout(() => {
       window.location.assign("/")
-  }, 2000);
+  }, 3000);
 </script>

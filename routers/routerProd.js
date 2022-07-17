@@ -1,6 +1,5 @@
 const express = require("express");
 const {faker} = require("@faker-js/faker");
-
 const {Router} = express;
 const routerProducto = Router();
 const multer = require("multer");
